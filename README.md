@@ -5,6 +5,9 @@ OriGen is a fine-tuned lora model designed for Verilog code generation. It is tr
 
 The model has been uploaded to Hugging Face, and the repository contains the inference scripts. The dataset and data generation flow will be released soon.
 
+- **Huggingface**: https://huggingface.co/henryen/OriGen
+- **Repository**: https://github.com/pku-liang/OriGen
+
 ### Evaluation Results
 <img src="figures/evaluation.png" alt="evaluation" width="1000"/>
 
