@@ -39,7 +39,7 @@ python generate_lora.py \
  --data_type "float16" \
  --peft_config "henryen/OriGen" \
  --output_file "../results/origen.jsonl" \
- --do_sample True \
+ --do_sample \
  --temperature 0.7 \
  --top_p 0.95 \
  --n 5
