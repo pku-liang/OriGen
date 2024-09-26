@@ -29,8 +29,9 @@ evaluate_functional_correctness path/to/origen.jsonl  --problem_file data/Verilo
 
 The output should be :
 ```bash
-{'pass@1': 0.5384615384615384}
+{'pass@1': 0.5512820512820513}
 ```
+The reference output completions file is under `../results/reference_verilogeval.jsonl`.
 
 For more complex evaluation, you can run the command as follows:
 ```bash
