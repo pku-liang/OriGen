@@ -21,9 +21,7 @@ conda activate origen
 pip install -r requirements.txt
 ```
 
-Here is an example of how to use the model. Please note that the base model, DeepSeek Coder 7B, is loaded in float16 precision though the its default precision is bfloat16.
-
-The reason for this is that we find Lora trained in float16 performs better than that in bfloat16 in experiments.
+Here is an example of how to use the model. Please note that the base model, DeepSeek Coder 7B, is loaded in float16 precision, even though its default precision is bfloat16. This choice was made because our experiments showed that Lora trained in float16 outperforms those trained in bfloat16.
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer, TextStreamer
