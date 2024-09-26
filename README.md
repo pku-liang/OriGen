@@ -45,7 +45,7 @@ model.eval()
 
 streamer = TextStreamer(tokenizer, skip_prompt=True, skip_special_tokens=True)
 
-prompt = "### Instruction: Please act as a professional Verilog designer. and provide Verilog code based on the given instruction. Generate a concise Verilog module for a 8 bit full adder, don't include any unnecessary code.\n### Response: "
+prompt = "### Instruction: Please act as a professional Verilog designer and provide Verilog code based on the given description. Create a 8 bit full adder with only one assign statement.\n### Response: "
 
 inputs = tokenizer(prompt, return_tensors="pt").to("cuda")
 
