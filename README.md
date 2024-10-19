@@ -5,7 +5,9 @@ OriGen is a fine-tuned lora model designed for Verilog code generation. It is tr
 
 OriGen_Fix is a fine-tuned lora model designed for fixing syntax errors in Verilog code. It is trained based on OriGen using debug datasets. The datasets can be found in the [origen_dataset_debug](https://huggingface.co/datasets/henryen/origen_dataset_debug).
 
-The models have been uploaded to Hugging Face, and the repository contains the inference scripts. The data generation flow will be released soon.
+There is another dataset called [origen_dataset_description](https://huggingface.co/datasets/henryen/origen_dataset_description). This dataset is in the format of `Description` and `Code`, and [origen_dataset_instruction](https://huggingface.co/datasets/henryen/origen_dataset_instruction) is obtained by converting the `Description` to `Instruction`.
+
+The models and datasets have been uploaded to Hugging Face, and the repository contains the inference scripts. The data generation flow will be released soon.
 
 - **Huggingface**: 
     - https://huggingface.co/henryen/OriGen
@@ -13,6 +15,7 @@ The models have been uploaded to Hugging Face, and the repository contains the i
 - **Dataset**: 
     - https://huggingface.co/datasets/henryen/origen_dataset_instruction
     - https://huggingface.co/datasets/henryen/origen_dataset_debug
+    - https://huggingface.co/datasets/henryen/origen_dataset_description
 - **Repository**: https://github.com/pku-liang/OriGen
 
 ### Evaluation Results
@@ -52,7 +55,7 @@ model.eval()
 
 streamer = TextStreamer(tokenizer, skip_prompt=True, skip_special_tokens=True)
 
-prompt = "### Instruction: Please act as a professional Verilog designer and provide Verilog code based on the given description. Create a 8 bit full adder with only one assign statement.\n### Response: "
+prompt = "### Instruction: Please act as a professional Verilog designer. and provide Verilog code based on the given instruction. Generate a concise Verilog module for a 8 bit full adder, don't include any unnecessary code.\n### Response: "
 
 inputs = tokenizer(prompt, return_tensors="pt").to("cuda")
 
