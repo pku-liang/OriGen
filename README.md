@@ -1,11 +1,18 @@
 # OriGen: Enhancing RTL Code Generation with Code-to-Code Augmentation and Self-Reflection
 
 ### Introduction
-OriGen is a fine-tuned lora model designed for Verilog code generation. It is trained on top of DeepSeek Coder 7B using datasets generated from code-to-code augmentation and self-reflection.
+OriGen is a fine-tuned lora model designed for Verilog code generation. It is trained on top of DeepSeek Coder 7B using datasets generated from code-to-code augmentation and self-reflection. The datasets can be found in the [origen_dataset_instruction](https://huggingface.co/datasets/henryen/origen_dataset_instruction).
 
-The model has been uploaded to Hugging Face, and the repository contains the inference scripts. The dataset and data generation flow will be released soon.
+OriGen_Fix is a fine-tuned lora model designed for fixing syntax errors in Verilog code. It is trained based on OriGen using debug datasets. The datasets can be found in the [origen_dataset_debug](https://huggingface.co/datasets/henryen/origen_dataset_debug).
 
-- **Huggingface**: https://huggingface.co/henryen/OriGen
+The models have been uploaded to Hugging Face, and the repository contains the inference scripts. The data generation flow will be released soon.
+
+- **Huggingface**: 
+    - https://huggingface.co/henryen/OriGen
+    - https://huggingface.co/henryen/OriGen_Fix
+- **Dataset**: 
+    - https://huggingface.co/datasets/henryen/origen_dataset_instruction
+    - https://huggingface.co/datasets/henryen/origen_dataset_debug
 - **Repository**: https://github.com/pku-liang/OriGen
 
 ### Evaluation Results
@@ -38,7 +45,7 @@ model = AutoModelForCausalLM.from_pretrained(
     torch_dtype=torch.float16,
     attn_implementation="flash_attention_2",
     device_map="auto",
-)
+).to("cuda")
 
 model = PeftModel.from_pretrained(model, model_id="henryen/OriGen")
 model.eval()
@@ -81,7 +88,7 @@ We have released the scripts for the Verilog-Eval benchmark. Please refer to the
 ### Paper
 **Arxiv:** https://arxiv.org/abs/2407.16237
 
-Please cite our paper if you use this model.
+Please cite our paper if you find this work useful.
 
 ```
 @article{2024origen,
