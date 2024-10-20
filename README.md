@@ -1,29 +1,30 @@
 # OriGen: Enhancing RTL Code Generation with Code-to-Code Augmentation and Self-Reflection
 
-### Introduction
-OriGen is a fine-tuned lora model designed for Verilog code generation. It is trained on top of DeepSeek Coder 7B using datasets generated from code-to-code augmentation and self-reflection. The datasets can be found in the [origen_dataset_instruction](https://huggingface.co/datasets/henryen/origen_dataset_instruction).
+## 📖 Introduction
 
-OriGen_Fix is a fine-tuned lora model designed for fixing syntax errors in Verilog code. It is trained based on OriGen using debug datasets. The datasets can be found in the [origen_dataset_debug](https://huggingface.co/datasets/henryen/origen_dataset_debug).
+OriGen is a fine-tuned LoRA model designed for Verilog code generation. It's built on top of DeepSeek Coder 7B, leveraging datasets generated through code-to-code augmentation and self-reflection techniques.
 
-There is another dataset called [origen_dataset_description](https://huggingface.co/datasets/henryen/origen_dataset_description). This dataset is in the format of `Description` and `Code`, and [origen_dataset_instruction](https://huggingface.co/datasets/henryen/origen_dataset_instruction) is obtained by converting the `Description` to `Instruction`.
+### 🔧 Models
 
-The models and datasets have been uploaded to Hugging Face, and the repository contains the inference scripts. The data generation flow will be released soon.
+1. **OriGen**: Focused on Verilog code generation, trained on [origen_dataset_instruction](https://huggingface.co/datasets/henryen/origen_dataset_instruction)
+2. **OriGen_Fix**: Specialized in fixing syntax errors in Verilog code, based on OriGen, further trained using [origen_dataset_debug](https://huggingface.co/datasets/henryen/origen_dataset_debug) 
 
-- **Huggingface**: 
-    - https://huggingface.co/henryen/OriGen
-    - https://huggingface.co/henryen/OriGen_Fix
-- **Dataset**: 
-    - https://huggingface.co/datasets/henryen/origen_dataset_instruction
-    - https://huggingface.co/datasets/henryen/origen_dataset_debug
-    - https://huggingface.co/datasets/henryen/origen_dataset_description
-- **Repository**: https://github.com/pku-liang/OriGen
+## 🔗 Quick Links
 
-### Evaluation Results
-<img src="figures/evaluation.png" alt="evaluation" width="1000"/>
+- 🤗 **Hugging Face Models**:
+  - [OriGen](https://huggingface.co/henryen/OriGen)
+  - [OriGen_Fix](https://huggingface.co/henryen/OriGen_Fix)
 
-### Quick Start
+- 📊 **Datasets**:
+  - [Instruction Dataset](https://huggingface.co/datasets/henryen/origen_dataset_instruction)
+  - [Debug Dataset](https://huggingface.co/datasets/henryen/origen_dataset_debug)
+  - [Description Dataset](https://huggingface.co/datasets/henryen/origen_dataset_description)
 
-Before running the following code, please install the required packages:
+- 📁 **GitHub Repository**: [pku-liang/OriGen](https://github.com/pku-liang/OriGen)
+
+## 🚀 Quick Start
+
+### Environment Setup
 
 ```bash
 conda create -n origen python=3.11
@@ -31,7 +32,8 @@ conda activate origen
 pip install -r requirements.txt
 ```
 
-Here is an example of how to use the model. Please note that the base model, DeepSeek Coder 7B, is loaded in float16 precision, even though its default precision is bfloat16. This choice was made because our experiments showed that Lora trained in float16 outperforms those trained in bfloat16.
+### Usage Example
+Here is an example of how to use the model. Please note that the base model, DeepSeek Coder 7B, is loaded in float16 precision, even though its default precision is bfloat16. This choice is made because our experiments show that Lora trained in float16 outperforms those trained in bfloat16.
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer, TextStreamer
@@ -69,7 +71,8 @@ outputs = model.generate(
 )
 ```
 
-The output will be:
+### Output
+
 ```verilog
 module full_adder(
     input [7:0] a,
@@ -84,16 +87,19 @@ assign {cout, sum} = a + b + cin;
 endmodule
 ```
 
-### Verilog-Eval Benchmark
-We have released the scripts for the Verilog-Eval benchmark. Please refer to the [README](./evaluation/README.md) for details.
+## 📊 Evaluation
 
+We've released scripts for the Verilog-Eval benchmark. For details, please refer to the [evaluation README](./evaluation/README.md).
 
-### Paper
-**Arxiv:** https://arxiv.org/abs/2407.16237
+![OriGen Evaluation Results](figures/evaluation.png)
 
-Please cite our paper if you find this work useful.
+## 📄 Paper
 
-```
+**arXiv**: [https://arxiv.org/abs/2407.16237](https://arxiv.org/abs/2407.16237)
+
+If you find this work useful, please cite our paper:
+
+```bibtex
 @article{2024origen,
   title={OriGen: Enhancing RTL Code Generation with Code-to-Code Augmentation and Self-Reflection},
   author={Cui, Fan and Yin, Chenyang and Zhou, Kexing and Xiao, Youwei and Sun, Guangyu and Xu, Qiang and Guo, Qipeng and Song, Demin and Lin, Dahua and Zhang, Xingcheng and others},
